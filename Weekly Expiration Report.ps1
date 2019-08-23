@@ -1,4 +1,10 @@
-﻿Import-Module ActiveDirectory
+﻿#
+# This script creates a report in Slack of users who will be expiring over the next week.
+# Intended to be run as a weekly scheduled task.
+#
+
+
+Import-Module ActiveDirectory
 
 # Pulls list of all users who are enabled and are not set to never expire
 $userList = Get-ADUser -Filter {Enabled -eq $true -and PasswordNeverExpires -eq $false} -Properties "DisplayName","PasswordLastSet"
